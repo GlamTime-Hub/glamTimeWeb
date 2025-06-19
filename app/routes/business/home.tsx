@@ -14,7 +14,7 @@ export default function Component() {
   const { business, isLoading } = useBusiness(businessId ?? "");
 
   console.log("businessId:", businessId);
-  console.log("businessId:", business);
+  console.log("businesData:", business);
 
   if (isLoading) return <div>Cargando...</div>;
 

@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 export function BusinessTabs() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6">
+    <div className="flex w-full max-w-sm flex-col gap-6 py-4">
       <Tabs defaultValue="services">
         <TabsList>
           <TabsTrigger value="services">Servicios</TabsTrigger>

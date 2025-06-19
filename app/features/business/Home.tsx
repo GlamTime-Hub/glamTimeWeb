@@ -1,5 +1,11 @@
 "use client";
-import { MapPinned } from "lucide-react";
+import {
+  Heart,
+  MapPinned,
+  MessageCircleMore,
+  NotebookPen,
+  Star,
+} from "lucide-react";
 import { CustomDialog } from "~/components/CustomDialog";
 import {
   AlertDialog,
@@ -34,6 +40,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Title } from "~/components/ui/title";
 import type { Business } from "~/core/interfaces/business.interface";
 import { BusinessTabs } from "./BusinessTab";
+import { BusinessReviews } from "~/components/BusinessReviews";
 
 interface Props {
   data: Business;
@@ -49,20 +56,68 @@ export default function Home({ data }: Props) {
           alt={data.name}
         />
       )}
-      <Card className="m-4">
+      <Card className="m-6">
         <CardContent>
           <Title title={data.name} />
           <Description description={data.location.address} />
-          <div className="flex flex-row">
-            <Label className="bg-red-500 p-2 ">Ver Ubicación</Label>
-            <MapPinned />
+          <div className="flex justify-around items-center w-full">
+            <div className="flex flex-row ">
+              <Label className="py-1 px-2 text-md rounded-lg">
+                Ver Ubicación
+              </Label>
+              <MapPinned />
+            </div>
+            <div className="flex flex-row items-center gap-1">
+              <p className="mt-2 text-3xl ">{data.rating}</p>
+              <Star color="#FFD700" size={30} fill={"gold"} />
+            </div>
           </div>
-          <CustomDialog title="Ver Comentarios" subTitle="Comentarios">
-            <div className="">Aqui van los comentarios</div>
-          </CustomDialog>
-          <BusinessTabs />
+
+          <div className="flex flex-row gap-4 justify-center mt-4 rounded-lg">
+            <Card className="flex-1">
+              <CardContent className="py-2 px-4 ">
+                <div className="flex flex-col justify-center items-center">
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <p className={`text-3xl pt-4`}>{data.likes}</p>
+                    <Heart size={28} />
+                  </div>
+                  <p className={`whitespace-nowrap text-md text-primary font-bold`}>Me Gusta</p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="flex-1">
+              <CardContent className="py-2 px-4 ">
+                <div className="flex flex-col justify-center items-center">
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <p className={`text-3xl pt-4`}>{data.totalBooking}</p>
+                    <NotebookPen size={28} />
+                  </div>
+                  <p className={`text-md text-primary font-bold`}>Reservas</p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="flex-1">
+              <CardContent className="py-2 px-4 ">
+                <div className="flex flex-col justify-center items-center">
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <p className={`text-3xl pt-4`}>{data.receivedReviews}</p>
+                    <MessageCircleMore size={28} />
+                  </div>
+                  <p className={`text-md text-primary font-bold`}>
+                    Comentarios
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </CardContent>
       </Card>
+
+      <CustomDialog title="Ver Comentarios" subTitle="Comentarios">
+        <BusinessReviews id={data.id} />
+      </CustomDialog>
+
+      <BusinessTabs />
     </section>
   );
 }
