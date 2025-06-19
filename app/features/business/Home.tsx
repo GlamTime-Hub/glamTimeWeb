@@ -40,7 +40,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Title } from "~/components/ui/title";
 import type { Business } from "~/core/interfaces/business.interface";
 import { BusinessTabs } from "./BusinessTab";
-import { BusinessReviews } from "~/components/BusinessReviews";
+import { BusinessReviews } from "~/components/business/BusinessReviews";
 
 interface Props {
   data: Business;
@@ -48,16 +48,16 @@ interface Props {
 
 export default function Home({ data }: Props) {
   return (
-    <section className="mx-auto flex flex-col  justify-center items-center">
+    <section className="mx-auto flex flex-col justify-center items-center">
       {data && (
         <img
           src={data.urlPhoto}
-          className="object-cover w-full h-[400px]"
+          className="object-cover w-full md:h-[400px] h-[200px]"
           alt={data.name}
         />
       )}
       <Card className="m-6">
-        <CardContent>
+        <CardContent className="px-2 md:px-6">
           <Title title={data.name} />
           <Description description={data.location.address} />
           <div className="flex justify-around items-center w-full">
@@ -81,7 +81,11 @@ export default function Home({ data }: Props) {
                     <p className={`text-3xl pt-4`}>{data.likes}</p>
                     <Heart size={28} />
                   </div>
-                  <p className={`whitespace-nowrap text-md text-primary font-bold`}>Me Gusta</p>
+                  <p
+                    className={`whitespace-nowrap text-md text-primary font-bold`}
+                  >
+                    Me Gusta
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -117,7 +121,7 @@ export default function Home({ data }: Props) {
         <BusinessReviews id={data.id} />
       </CustomDialog>
 
-      <BusinessTabs />
+      <BusinessTabs id={data.id} businessType={data.businesstype} />
     </section>
   );
 }

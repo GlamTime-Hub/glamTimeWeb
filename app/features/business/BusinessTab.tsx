@@ -1,4 +1,5 @@
 import { AppWindowIcon, CodeIcon } from "lucide-react";
+import { BusinessServicesTab } from "~/components/business/BusinessServicesTab";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -11,28 +12,28 @@ import {
 import { Label } from "~/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
-export function BusinessTabs() {
+interface Props {
+  id: string;
+  businessType: string;
+}
+
+export function BusinessTabs({ id, businessType }: Props) {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6 py-4">
+    <div className="flex w-full max-w-2xl flex-col gap-6 py-4 px-2">
       <Tabs defaultValue="services">
         <TabsList>
-          <TabsTrigger value="services">Servicios</TabsTrigger>
-          <TabsTrigger value="professional">Profesionales</TabsTrigger>
+          <TabsTrigger className="text-md" value="services">
+            Servicios
+          </TabsTrigger>
+          <TabsTrigger className="text-md" value="professional">
+            Profesionales
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="services">
-          <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>
-                Make changes to your account here. Click save when you&apos;re
-                done.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6"></CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
+          <BusinessServicesTab
+            id={id}
+            businessType={businessType}
+          />
         </TabsContent>
         <TabsContent value="professional">
           <Card>
