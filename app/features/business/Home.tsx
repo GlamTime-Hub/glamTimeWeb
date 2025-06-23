@@ -7,41 +7,14 @@ import {
   Star,
 } from "lucide-react";
 import { CustomDialog } from "~/components/CustomDialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "~/components/ui/alert-dialog";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import { Description } from "~/components/ui/description";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "~/components/ui/dialog";
 import { Label } from "~/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Title } from "~/components/ui/title";
 import type { Business } from "~/core/interfaces/business.interface";
 import { BusinessTabs } from "./BusinessTab";
 import { BusinessReviews } from "~/components/business/BusinessReviews";
-
+import { Toaster } from "react-hot-toast";
 interface Props {
   data: Business;
 }
@@ -49,6 +22,7 @@ interface Props {
 export default function Home({ data }: Props) {
   return (
     <section className="mx-auto flex flex-col justify-center items-center">
+      <Toaster />
       {data && (
         <img
           src={data.urlPhoto}

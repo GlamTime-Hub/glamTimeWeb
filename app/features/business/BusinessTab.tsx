@@ -1,15 +1,6 @@
-import { AppWindowIcon, CodeIcon } from "lucide-react";
+import { BusinessProfessionalTab } from "~/components/business/BusinessProfessionalTab";
 import { BusinessServicesTab } from "~/components/business/BusinessServicesTab";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import { Label } from "~/components/ui/label";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 interface Props {
@@ -30,32 +21,10 @@ export function BusinessTabs({ id, businessType }: Props) {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="services">
-          <BusinessServicesTab
-            id={id}
-            businessType={businessType}
-          />
+          <BusinessServicesTab id={id} businessType={businessType} />
         </TabsContent>
         <TabsContent value="professional">
-          <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+          <BusinessProfessionalTab id={id} />
         </TabsContent>
       </Tabs>
     </div>

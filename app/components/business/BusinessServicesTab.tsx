@@ -1,4 +1,3 @@
-// import { useBusinessServices } from "@/presentation/hooks/use-business-services.hook";
 import { formatCurrency } from "~/utils/format-currency.util";
 import { CustomAlert } from "../CustomAlert";
 import { Card, CardContent } from "../ui/card";
@@ -10,6 +9,7 @@ import {
 import { useBusinessService } from "~/hooks/use-business-services.hook";
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import type { Service, SubCategory } from "~/core/interfaces/service.interface";
 
 interface Prosp {
   id: string;
@@ -36,7 +36,7 @@ export const BusinessServicesTab = ({ id, businessType }: Prosp) => {
 
   return (
     <div>
-      {services?.map((service: any) => (
+      {services?.map((service: Service) => (
         <Card key={service.id}>
           <CardContent className="p-0 m-0">
             <Collapsible onOpenChange={() => setOpen(!open)}>
@@ -49,8 +49,9 @@ export const BusinessServicesTab = ({ id, businessType }: Prosp) => {
                 </div>
               </CollapsibleTrigger>
               <CollapsibleContent className="pt-2">
-                {service.subCategories.map((subcategory: any) => (
+                {service.subCategories.map((subcategory: SubCategory) => (
                   <div
+                    className="cursor-pointer"
                     // onClick={() => onBookingService(subcategory)}
                     key={subcategory.id}
                   >
