@@ -20,6 +20,12 @@ interface Props {
 }
 
 export default function Home({ data }: Props) {
+  const mapsUrl = data.location.address
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        data.location.address
+      )}`
+    : `https://www.google.com/maps/search/?api=1&query=${data.location.latitude},${data.location.latitude}`;
+
   return (
     <section className="mx-auto flex flex-col justify-center items-center">
       <Toaster />
@@ -36,9 +42,14 @@ export default function Home({ data }: Props) {
           <Description description={data.location.address} />
           <div className="flex justify-around items-center w-full">
             <div className="flex flex-row ">
-              <Label className="py-1 px-2 text-md rounded-lg">
+              <a
+                className="py-1 px-2 text-md rounded-lg"
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Ver Ubicación
-              </Label>
+              </a>
               <MapPinned />
             </div>
             <div className="flex flex-row items-center gap-1">
